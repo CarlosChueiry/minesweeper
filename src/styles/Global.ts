@@ -7,6 +7,12 @@ export const Container = styled.div`
   flex-direction: column;
 `
 
+export const Stack = styled.div<{ direction: 'row' | 'column', spacing?: number }>`
+  display: flex;
+  direction: ${({ direction }) => direction};
+  gap: ${({ spacing }) => `${spacing}px`}; 
+`
+
 export const InputContainer = styled.div`
   position: relative;
 `
@@ -23,6 +29,15 @@ export const InputElement = styled.input`
   &:not(:placeholder-shown) + label {
     top: 0px;
     left: 8px;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  & {
+    -moz-appearance: textfield;
   }
 `
 
