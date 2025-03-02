@@ -1,9 +1,11 @@
+import { CellValue } from '../../enums/CellValue';
 import { Stack } from '../../styles/Global';
 import { Board } from './styles'
 
 export type BoardCell = {
   row: number;
-  column: number
+  column: number;
+  value: CellValue;
 }
 
 type Props = {
@@ -27,7 +29,7 @@ export default function GameBoard({ boardData }: Props) {
                 justifyContent: 'center'
               }}
             >
-              <span>{`${column.row}, ${column.column}`}</span>
+              <span>{column.value}</span>
             </div>
           ))}
         </Stack>
