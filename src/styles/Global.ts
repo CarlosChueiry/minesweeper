@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Stack = styled.div<{ direction: 'row' | 'column', spacing?: number }>`
   display: flex;
-  direction: ${({ direction }) => direction};
+  flex-direction: ${({ direction }) => direction};
   gap: ${({ spacing }) => `${spacing}px`}; 
 `
 

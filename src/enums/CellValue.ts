@@ -9,4 +9,4 @@ export enum CellValue {
   SIX = 6,
   SEVEN = 7,
   EIGHT = 8
-}
+};
