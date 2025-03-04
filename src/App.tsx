@@ -4,6 +4,7 @@ import Input from "./components/Input";
 import { Container, Stack } from "./styles/Global";
 import { CellValue } from "./enums/CellValue";
 import { CellState } from "./enums/CellState";
+import { CellFlag } from "./enums/CellFlag";
 
 type MineSweeperConfig = {
   rows: string;
@@ -32,7 +33,8 @@ function App() {
           row,
           column,
           value: CellValue.EMPTY,
-          state: CellState.CLOSED
+          state: CellState.CLOSED,
+          flag: CellFlag.NONE
         });
       };
       initialBoard.push(rowData);

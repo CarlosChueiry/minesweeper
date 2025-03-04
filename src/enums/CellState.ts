@@ -1,4 +1,5 @@
 export enum CellState {
-  CLOSED = 'closed',
-  OPEN = 'open'
+  CLOSED = "closed",
+  OPEN = "open",
+  FLAGGED = "flagged"
 };

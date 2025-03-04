@@ -21,15 +21,14 @@ export const Cell = styled.div<{ state: CellState }>`
   height: 50px;
   margin: 2px;
   background-color: ${({ state }) =>
-    state === CellState.CLOSED ? "#eaeaea" : "white"
+    state === CellState.OPEN ? "white" : "#eaeaea"
   };
   border-radius: 4px;
   overflow: hidden;
 
-  ${({ state }) => state === CellState.CLOSED && css`
+  ${({ state }) => state !== CellState.OPEN && css`
     :hover {
       background-color: #d5d5d5 !important;
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
       cursor: pointer;
     };
   `}
@@ -43,5 +42,8 @@ export const Cell = styled.div<{ state: CellState }>`
     display: flex;
     justify-content: center;
     align-items: center;
+    img {
+      transition: background-color 0.15s ease;
+    }
   };
 `;
