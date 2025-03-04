@@ -1,25 +1,40 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { CellState } from "../../enums/CellState";
 
 export const Board = styled.div`
-  border: 4px solid #e0e0e0;
+  border: 4px solid #c5c5c5;
   border-radius: 2px;
-  background-color: #e0e0e0;
+  background-color: #c5c5c5;
+
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  & * {
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+  }
 `;
 
-export const Cell = styled.div`
+export const Cell = styled.div<{ state: CellState }>`
   width: 50px;
   height: 50px;
   margin: 2px;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-
-  :hover {
-    background-color: #ececec !important;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+  background-color: ${({ state }) =>
+    state === CellState.CLOSED ? "#eaeaea" : "white"
   };
+  border-radius: 4px;
+  overflow: hidden;
 
-  span {
+  ${({ state }) => state === CellState.CLOSED && css`
+    :hover {
+      background-color: #d5d5d5 !important;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    };
+  `}
+
+  div {
     display: block;
     transition: background-color 0.15s ease;
     border-radius: 4px;

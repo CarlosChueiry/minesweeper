@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, JSX, SetStateAction } from 'react';
 import { CellState } from '../../enums/CellState';
 import { CellValue } from '../../enums/CellValue';
 import { Stack } from '../../styles/Global';
@@ -30,19 +30,34 @@ export default function GameBoard({ boardData, setBoardData }: Props) {
     })
   };
 
+  const renderCellContent = (cell: BoardCell): JSX.Element => {
+    if (cell.state === CellState.CLOSED || cell.value === CellValue.EMPTY) {
+      return <div></div>
+    }
+    if (cell.value === CellValue.BOMB) {
+      return (
+        <div>
+          <img src="/assets/bomb.svg" alt="Bomb icon" width="100%" height="100%" />
+        </div>
+      )
+    }
+    return <div>{cell.value}</div>
+  }
+
   return (
-    <Board>
+    <Board onContextMenu={(e) => e.preventDefault()}>
       {boardData.map((row: BoardCell[], index: number) => (
         <Stack key={row[index].row} direction="row">
           {row.map((cell: BoardCell) => (
             <Cell
               key={`${cell.row}-${cell.column}`}
               id={`${cell.row}-${cell.column}`}
+              state={cell.state}
               {...(cell.state === CellState.CLOSED && {
                 onClick: () => onCellClick(cell)
               })}
             >
-              <span>{cell.state}</span>
+              {renderCellContent(cell)}
             </Cell>
           ))}
         </Stack>
